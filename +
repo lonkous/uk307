@@ -1,28 +1,27 @@
-"use client";
-import React, { useState } from "react";
-import Login from "./login";
+import { GiHamburgerMenu } from "react-icons/gi";
 
+let clicked = false;
 export default function Menu() {
-  const [clicked, setClicked] = useState(true);
-
   return (
     <div className="absolute top-0 left-0 right-0 m-2 rounded-lg shadow-sm bg-slate-400 shadow-slate-500">
-      <div className="flex pl-4 text-center align-middle rounded-lg">
+      <div className="flex m-1 text-center align-middle rounded-lg">
+        <button className="p-2 m-2 duration-200 ease-in-out rounded-lg pointer-events-auto delay:75 hover:ring-slate-100 hover:ring-2 clicked:animate-ping hover:shadow-md hover:shadow-slate-500">
+          <GiHamburgerMenu />
+        </button>
         <p className="p-2 m-1 text-justify align-text-bottom duration-200 ease-in-out rounded-lg pointer-events-auto delay:75 hover:ring-slate-100 hover:ring-2 hover:shadow-md hover:shadow-slate-500">
           Products
         </p>
         <p className="p-2 m-1 text-justify align-text-bottom duration-200 ease-in-out rounded-lg pointer-events-auto delay:75 hover:ring-slate-100 hover:ring-2 hover:shadow-md hover:shadow-slate-500">
           Categories
         </p>
-        {clicked && (
+        {!clicked && (
           <p
-            className="p-2 m-1 ml-auto text-justify align-text-bottom duration-200 ease-in-out rounded-lg pointer-events-auto delay:75 hover:ring-slate-100 hover:ring-2 hover:shadow-md hover:shadow-slate-500"
-            onClick={() => setClicked(!clicked)}
+            className="p-2 m-1 text-justify align-text-bottom duration-200 ease-in-out rounded-lg pointer-events-auto delay:75 hover:ring-slate-100 hover:ring-2 hover:shadow-md hover:shadow-slate-500"
+            onClick={!clicked}
           >
-            Login
+            About
           </p>
         )}
-        {!clicked && <Login clicked={clicked} />}
       </div>
     </div>
   );
