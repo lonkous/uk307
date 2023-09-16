@@ -1,5 +1,6 @@
 import preactLogo from "../../assets/preact.svg";
 import "tailwindcss/tailwind.css";
+import { useState } from "preact/hooks";
 
 export function Home() {
   let [isOpen, setIsOpen] = useState(true);
