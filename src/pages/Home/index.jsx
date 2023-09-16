@@ -37,7 +37,7 @@ export function Home() {
   }
   async function getCategory() {
     const response = await fetch(
-      "https://campus.csbe.ch/sollberger-manuel/uek307/Products",
+      "https://campus.csbe.ch/sollberger-manuel/uek307/Products?itsy-bitsy-teenie-weenie-yellow-polkadot-bikini=bla",
       {
         method: "GET",
       }
@@ -59,11 +59,13 @@ export function Home() {
 
         <input
           type="text"
-          placeholder="Password"
+          placeholder="sUP3R53CR3T#"
           value={password}
           onInput={handlePasswordChange}
           class="rounded-md p-1 m-1"
-        ></input>
+        >
+          sUP3R53CR3T#
+        </input>
         <button onClick={clicked} class="rounded-md p-1 m-1 bg-violet-700 ">
           Sign In
         </button>
