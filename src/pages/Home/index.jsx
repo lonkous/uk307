@@ -26,6 +26,7 @@ export function Home() {
   function clicked() {
     console.log("testing");
     SignIn(username, password);
+    getCategory();
   }
 
   function handleUserChange(event) {
@@ -63,7 +64,7 @@ export function Home() {
           onInput={handlePasswordChange}
           class="rounded-md p-1 m-1"
         ></input>
-        <button onClick={clicked} class="rounded-md p-1 m-1 bg-violet-700">
+        <button onClick={clicked} class="rounded-md p-1 m-1 bg-violet-700 ">
           Sign In
         </button>
       </div>
