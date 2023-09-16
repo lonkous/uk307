@@ -24,6 +24,7 @@ export function Home() {
     }
   }
   function clicked() {
+    console.log("testing");
     SignIn(username, password);
   }
 
