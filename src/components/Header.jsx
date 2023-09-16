@@ -5,8 +5,8 @@ export function Header() {
 
   return (
     <header>
-      <nav>
-        <a href="/" class={url == "/" && "active"}>
+      <div class="bg-violet-500 p-2 flex gap-2 ml justify-end">
+        <a href="/" class={url == "/" && "active "}>
           Home
         </a>
         <a href="/Login" class={url == "/Login" && "active"}>
@@ -18,10 +18,7 @@ export function Header() {
         <a href="/Login" class={url == "/Login" && "active"}>
           Sign In
         </a>
-        <a href="/404" class={url == "/404" && "active"}>
-          404
-        </a>
-      </nav>
+      </div>
     </header>
   );
 }

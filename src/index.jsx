@@ -1,4 +1,4 @@
-import { render } from "preact";
+import { Fragment, render } from 'preact';
 import { LocationProvider, Router, Route } from "preact-iso";
 
 import { Header } from "./components/Header.jsx";
@@ -12,6 +12,7 @@ export function App() {
     <LocationProvider>
       <Header />
       <main>
+        <script src="https://cdn.tailwindcss.com"></script>
         <Router>
           <Route path="/" component={Home} />
           <Route path="/Login" component={Login} />

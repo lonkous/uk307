@@ -1,6 +1,7 @@
 import { Dialog } from "@headlessui/react";
 import { useState } from "preact/hooks";
 import "./../../style.css";
+import { h } from "preact";
 
 export default function Login() {
   let [isOpen, setIsOpen] = useState(true);
@@ -23,7 +24,16 @@ export default function Login() {
       console.log(error);
     }
   }
+  function clicked() {
+    SignIn(username, password);
+  }
 
+  function handleUserChange(event) {
+    setUsername(event.target.value);
+  }
+  function handlePasswordChange(event) {
+    setPassword(event.target.value);
+  }
   async function getCategory() {
     const response = await fetch(
       "https://campus.csbe.ch/sollberger-manuel/uek307/Products",
@@ -36,7 +46,27 @@ export default function Login() {
 
   return (
     <div class="flex items-center justify-center h-screen">
-      <h1 class="text-4xl bg">Sign In</h1>
+      <div class="flex flex-col border-2 rounded-md p-2 sshadow-xl gap-2">
+        <h1 class="text-2xl p-2">Sign In</h1>
+        <input
+          type="text"
+          placeholder="root"
+          value={username}
+          onInput={handleUserChange}
+          class="rounded-md p-1 m-1"
+        ></input>
+
+        <input
+          type="text"
+          placeholder="Password"
+          value={password}
+          onInput={handlePasswordChange}
+          class="rounded-md p-1 m-1"
+        ></input>
+        <button onClick={clicked} class="rounded-md p-1 m-1 bg-violet-700">
+          Sign In
+        </button>
+      </div>
     </div>
   );
 }
