@@ -1,10 +1,7 @@
-import { Dialog } from "@headlessui/react";
-import { useState } from "preact/hooks";
-import "./../../style.css";
 import { h } from "preact";
+import { useState } from "react";
 
-export default function Login() {
-  let [isOpen, setIsOpen] = useState(true);
+export default function Modal({ isOpen, setIsOpen }) {
   let [username, setUsername] = useState("");
   let [password, setPassword] = useState("");
 
@@ -20,12 +17,19 @@ export default function Login() {
           }),
         }
       );
+      if (response.ok) {
+        console.log("success");
+        return true;
+      }
     } catch (error) {
       console.log(error);
     }
   }
+
   function clicked() {
+    console.log("testing");
     SignIn(username, password);
+    setIsOpen(false);
   }
 
   function handleUserChange(event) {
@@ -34,39 +38,33 @@ export default function Login() {
   function handlePasswordChange(event) {
     setPassword(event.target.value);
   }
-  async function getCategory() {
-    const response = await fetch(
-      "https://campus.csbe.ch/sollberger-manuel/uek307/Products",
-      {
-        method: "GET",
-      }
-    );
-    console.log(response);
-  }
 
   return (
-    <div class="flex items-center justify-center h-screen">
-      <div class="flex flex-col border-2 rounded-md p-2 sshadow-xl gap-2">
-        <h1 class="text-2xl p-2">Sign In</h1>
-        <input
-          type="text"
-          placeholder="root"
-          value={username}
-          onInput={handleUserChange}
-          class="rounded-md p-1 m-1"
-        ></input>
+    <form class="flex" open={isOpen} onClose={() => setIsOpen(false)}>
+      <input
+        type="text"
+        placeholder="root"
+        value={username}
+        onInput={handleUserChange}
+        class="rounded-md p-1 m-1"
+      ></input>
 
-        <input
-          type="text"
-          placeholder="Password"
-          value={password}
-          onInput={handlePasswordChange}
-          class="rounded-md p-1 m-1"
-        ></input>
-        <button onClick={clicked} class="rounded-md p-1 m-1 bg-violet-700">
-          Sign In
-        </button>
-      </div>
-    </div>
+      <input
+        type="text"
+        value={password}
+        placeholder="sUP3R53CR3T#"
+        onInput={handlePasswordChange}
+        class="rounded-md p-1 m-1"
+      >
+        sUP3R53CR3T#
+      </input>
+      <button
+        onClick={clicked}
+        type="submit"
+        class="rounded-md p-1 m-1 bg-violet-700 "
+      >
+        Sign In
+      </button>
+    </form>
   );
 }

@@ -1,7 +1,12 @@
 import { useLocation } from "preact-iso";
+import Modal from "../pages/SignIn";
+import { useState } from "preact/hooks";
 
 export function Header() {
   const { url } = useLocation();
+
+  const [isSignOpen, setIsSignOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
     <header>
@@ -15,9 +20,17 @@ export function Header() {
         <a href="/Other" class={url == "/Other" && "active"}>
           Categories
         </a>
-        <a href="/Login" class={url == "/Login" && "active"}>
-          Sign In
-        </a>
+        {!isLoggedIn && (
+          <a
+            href="/Other"
+            class={url == "/Other" && "active"}
+            onClick={() => setIsSignOpen(true)}
+          >
+            Sign In
+          </a>
+        )}
+
+        {isSignOpen && <Modal isOpen={isSignOpen} setIsOpen={setIsSignOpen} />}
       </div>
     </header>
   );
