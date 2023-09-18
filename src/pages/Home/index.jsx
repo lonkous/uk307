@@ -23,9 +23,7 @@ export function Home() {
     }
   }
   function clicked() {
-    console.log("testing");
     SignIn(username, password);
-    getCategory();
   }
 
   function handleUserChange(event) {
@@ -33,15 +31,6 @@ export function Home() {
   }
   function handlePasswordChange(event) {
     setPassword(event.target.value);
-  }
-  async function getCategory() {
-    const response = await fetch(
-      "https://campus.csbe.ch/sollberger-manuel/uek307/Products?itsy-bitsy-teenie-weenie-yellow-polkadot-bikini=bla",
-      {
-        method: "GET",
-      }
-    );
-    console.log(response);
   }
 
   return (

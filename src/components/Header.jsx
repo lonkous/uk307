@@ -14,8 +14,8 @@ export function Header() {
         <a href="/kupeczki-elias/" class={url == "/" && "active "}>
           Home
         </a>
-        <a href="/kupeczki-elias/Login">Products</a>
-        <a href="/kupeczki-elias/Other">Categories</a>
+        <a href="/kupeczki-elias/Product">Products</a>
+        <a href="/kupeczki-elias/Product">Categories</a>
         {!isLoggedIn && (
           <a href="/Other" onClick={() => setIsSignOpen(true)}>
             Sign In
