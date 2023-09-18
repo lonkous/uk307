@@ -11,21 +11,13 @@ export function Header() {
   return (
     <header>
       <div class="bg-violet-500 p-2 flex gap-2 ml justify-end">
-        <a href="/" class={url == "/" && "active "}>
+        <a href="/kupeczki-elias/" class={url == "/" && "active "}>
           Home
         </a>
-        <a href="/Login" class={url == "/Login" && "active"}>
-          Products
-        </a>
-        <a href="/Other" class={url == "/Other" && "active"}>
-          Categories
-        </a>
+        <a href="/kupeczki-elias/Login">Products</a>
+        <a href="/kupeczki-elias/Other">Categories</a>
         {!isLoggedIn && (
-          <a
-            href="/Other"
-            class={url == "/Other" && "active"}
-            onClick={() => setIsSignOpen(true)}
-          >
+          <a href="/Other" onClick={() => setIsSignOpen(true)}>
             Sign In
           </a>
         )}

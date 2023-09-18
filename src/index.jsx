@@ -6,6 +6,7 @@ import { Home } from "./pages/Home/index.jsx";
 import Login from "./pages/SignIn/index.jsx";
 import { NotFound } from "./pages/_404.jsx";
 import "./style.css";
+import { h } from "preact";
 
 export function App() {
   return (
@@ -13,8 +14,8 @@ export function App() {
       <Header />
       <main>
         <Router>
-          <Route path="/" component={Home} />
-          <Route path="/Login" component={Login} />
+          <Route path="/kupeczki-elias/" component={Home} />
+          <Route path="/kupeczki-elias/Login" component={Login} />
           <Route default component={NotFound} />
         </Router>
       </main>
