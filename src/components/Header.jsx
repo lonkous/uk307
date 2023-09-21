@@ -2,24 +2,34 @@ import { useLocation } from "preact-iso";
 import Modal from "../pages/SignIn";
 import { useState } from "preact/hooks";
 
-export function Header() {
+export function Header({ setProduct, product, setCategory, category }) {
   const { url } = useLocation();
 
   const [isSignOpen, setIsSignOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  const handleProductClick = () => {
+    setProduct(!product);
+    setCategory(!category);
+  };
+
+  const handleCategoryClick = () => {
+    setCategory(!category);
+    setProduct(!product);
+  };
+
   return (
-    <header>
-      <div class="bg-violet-500 p-2 flex gap-2 ml justify-end">
-        <a href="/kupeczki-elias/" class={url == "/" && "active "}>
-          Home
+    <header class="relative top-0 left-0 right-0">
+      <div class="mt-5 p-4 flex gap-2 ml justify-center ">
+        <a class="font-bold" onClick={handleProductClick}>
+          Products
         </a>
-        <a href="/kupeczki-elias/Product">Products</a>
-        <a href="/kupeczki-elias/Product">Categories</a>
+        <a class="font-bold" onClick={handleCategoryClick}>
+          Categories
+        </a>
+
         {!isLoggedIn && (
-          <a href="/Other" onClick={() => setIsSignOpen(true)}>
-            Sign In
-          </a>
+          <a onClick={() => setIsSignOpen(!isSignOpen)}>Sign In</a>
         )}
 
         {isSignOpen && <Modal isOpen={isSignOpen} setIsOpen={setIsSignOpen} />}
