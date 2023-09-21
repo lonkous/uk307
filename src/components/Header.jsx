@@ -9,13 +9,13 @@ export function Header({ setProduct, product, setCategory, category }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleProductClick = () => {
-    setProduct(!product);
-    setCategory(!category);
+    setProduct(true);
+    setCategory(false);
   };
 
   const handleCategoryClick = () => {
-    setCategory(!category);
-    setProduct(!product);
+    setCategory(true);
+    setProduct(false);
   };
 
   return (
