@@ -34,9 +34,9 @@ export function Product() {
     {
       try {
         const response = await fetch(
-          "https://campus.csbe.ch/sollberger-manuel/uek307/Product/{" +
+          "https://campus.csbe.ch/sollberger-manuel/uek307/Product/" +
             item +
-            "}?itsy-bitsy-teenie-weenie-yellow-polkadot-bikini",
+            "?itsy-bitsy-teenie-weenie-yellow-polkadot-bikini",
           {
             method: "DELETE",
           }
@@ -58,9 +58,9 @@ export function Product() {
     {
       try {
         const response = await fetch(
-          "https://campus.csbe.ch/sollberger-manuel/uek307/Product/{" +
+          "https://campus.csbe.ch/sollberger-manuel/uek307/Product/" +
             item +
-            "}?itsy-bitsy-teenie-weenie-yellow-polkadot-bikini",
+            "?itsy-bitsy-teenie-weenie-yellow-polkadot-bikini",
           {
             method: "UPDATE",
           }
@@ -133,44 +133,44 @@ export function Product() {
               <td class="p-2 w-fit  hover:underline"></td>
               <td class="p-2 w-fit  hover:underline">
                 <input
-                  class="p-2 rounded-lg bg-white w-full"
+                  class="p-2 rounded-lg bg-white w-full text-neutral-900"
                   placeholder="Name"
                 ></input>
               </td>
               <td class="p-2 w-fit  hover:underline">
                 <input
-                  class="p-2 rounded-lg bg-white w-full"
+                  class="p-2 rounded-lg bg-white w-full text-neutral-900"
                   placeholder="Active"
                 ></input>
               </td>
               <td class="p-2 w-fit  hover:underline">
                 <input
-                  class="p-2 rounded-lg bg-white w-full"
+                  class="p-2 rounded-lg bg-white w-full text-neutral-900"
                   placeholder="Name"
                   id="sku"
                 ></input>
               </td>
               <td class="p-2 w-fit  hover:underline">
                 <input
-                  class="p-2 rounded-lg bg-white w-full"
+                  class="p-2 rounded-lg bg-white w-full text-neutral-900"
                   placeholder="Photo"
                 ></input>
               </td>
               <td class="p-2 w-fit  hover:underline">
                 <input
-                  class="p-2 rounded-lg bg-white w-full"
+                  class="p-2 rounded-lg bg-white w-full text-neutral-900"
                   placeholder="Description"
                 ></input>
               </td>
               <td class="p-2 w-fit  hover:underline">
                 <input
-                  class="p-2 rounded-lg bg-white w-full"
+                  class="p-2 rounded-lg bg-white w-full text-neutral-900"
                   placeholder="Price"
                 ></input>
               </td>
               <td class="p-2 w-fit  hover:underline">
                 <input
-                  class="p-2 rounded-lg bg-white w-full"
+                  class="p-2 rounded-lg bg-white w-full text-neutral-900"
                   placeholder="Stock"
                 ></input>
               </td>
