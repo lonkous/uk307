@@ -8,7 +8,7 @@ export function Product() {
   const [isCreate, setIsCreate] = useState(false);
 
   useEffect(() => {
-    async function getCategory() {
+    async function getProducts() {
       try {
         const response = await fetch(
           "https://campus.csbe.ch/sollberger-manuel/uek307/Products?itsy-bitsy-teenie-weenie-yellow-polkadot-bikini",
@@ -29,7 +29,7 @@ export function Product() {
       }
     }
 
-    getCategory();
+    getProducts();
   }, []);
 
   async function CreateItem(item) {
@@ -41,7 +41,7 @@ export function Product() {
             method: "POST",
           }
         );
-
+        console.log(response);
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -90,6 +90,10 @@ export function Product() {
                 Product Name
               </th>
               <th class="p-2 w-fit text-neutral-900 hover:underline">Active</th>
+              <th class="p-2 w-fit text-neutral-900 hover:underline">
+                Category
+              </th>
+
               <th class="p-2 w-fit text-neutral-900 hover:underline">Name</th>
               <th class="p-2 w-fit text-neutral-900 hover:underline">Photo</th>
               <th class="p-2 w-fit text-neutral-900 hover:underline">
@@ -103,6 +107,7 @@ export function Product() {
             {isCreate && (
               <tr class="bg-gray-500">
                 <td></td>
+                <td></td>
                 <td class="p-2 w-fit  hover:underline">
                   <input
                     class="p-2 rounded-lg bg-white w-full text-neutral-900"
@@ -113,6 +118,12 @@ export function Product() {
                   <input
                     class="p-2 rounded-lg bg-white w-full text-neutral-900"
                     placeholder="Active"
+                  ></input>
+                </td>
+                <td class="p-2 w-fit  hover:underline">
+                  <input
+                    class="p-2 rounded-lg bg-white w-full text-neutral-900"
+                    placeholder="Category ID"
                   ></input>
                 </td>
                 <td class="p-2 w-fit  hover:underline">
@@ -157,7 +168,9 @@ export function Product() {
               </tr>
             )}
 
-            {data.map((item) => (console.log(item.sku), (<Row {...item} />)))}
+            {data.map((item) => (
+              <Row {...item} />
+            ))}
           </table>
         </div>
       )}

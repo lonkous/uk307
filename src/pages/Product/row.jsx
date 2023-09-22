@@ -31,13 +31,51 @@ export function Row(item) {
       }
     }
   }
+  async function UpdateItem(sku) {
+    try {
+      const response = await fetch(
+        "https://campus.csbe.ch/sollberger-manuel/uek307/Product/" +
+          sku +
+          "?itsy-bitsy-teenie-weenie-yellow-polkadot-bikini",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            sku: item.sku,
+            active: item.active,
+            id_category: item.id_category,
+            name: item.name,
+            product_image: item.product_image,
+            description: item.description,
+            price: item.price,
+            stock: item.stock,
+          }),
+        }
+      );
+      console.log(sku);
+      console.log(item.sku);
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const responseData = await response.json();
+      console.log("Data updated successfully:", responseData);
+    } catch (error) {
+      console.error("Error updating data:", error);
+    }
+  }
   const handleEdit = () => {
     setEditable(!isEditable);
+  };
+
+  const handleUpdate = (item) => {
+    setEditable(!isEditable);
+    UpdateItem(item);
   };
   return (
     <>
       <tr
-        key={item.product_id}
+        key={item.sku + item.product_id}
         class=" hover:bg-violet-300 hover:border-1 hover:delay-175 hover:ease-linear hover:duration-300 hover:shadow-2xl hover:drop-shadow-2xl  "
       >
         <td>
@@ -69,6 +107,9 @@ export function Row(item) {
             </svg>
           )}
         </td>
+        <th class="p-2 w-fit text-neutral-900 hover:underline">
+          {item.id_category}
+        </th>
         <td class="p-2 w-fit text-neutral-900 hover:underline">{item.name}</td>
         <td class="p-2 w-fit text-neutral-900 hover:underline">
           <img src={item.product_image} class="max-w-xs" />
@@ -93,7 +134,10 @@ export function Row(item) {
           class=" bg-white hover:border-1 hover:delay-175 hover:ease-linear hover:duration-300 hover:shadow-2xl hover:drop-shadow-2xl  "
         >
           <td>
-            <button class="px-4 py-2 bg-teal-500 text-white rounded-2xl hover:bg-teal-800">
+            <button
+              class="px-4 py-2 bg-teal-500 text-white rounded-2xl hover:bg-teal-800"
+              onClick={() => handleUpdate(item.sku)}
+            >
               Update
             </button>
           </td>
@@ -108,6 +152,12 @@ export function Row(item) {
             <input
               class="p-2 rounded-lg bg-white w-full text-neutral-900"
               placeholder="Active"
+            ></input>
+          </td>
+          <td class="p-2 w-fit  hover:underline">
+            <input
+              class="p-2 rounded-lg bg-white w-full text-neutral-900"
+              placeholder="Category ID"
             ></input>
           </td>
           <td class="p-2 w-fit  hover:underline">
