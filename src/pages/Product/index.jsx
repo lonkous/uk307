@@ -83,7 +83,7 @@ export function Product() {
       try {
         const response = await fetch(
           "https://campus.csbe.ch/sollberger-manuel/uek307/Product/" +
-            60003111 +
+            search +
             "?itsy-bitsy-teenie-weenie-yellow-polkadot-bikini",
           {
             method: "GET",
@@ -95,12 +95,32 @@ export function Product() {
         const responseData = await response.json();
         setSearchdata(responseData);
         console.log(searchdata);
+        alert(
+          "name:" +
+            searchdata.name +
+            "active:" +
+            searchdata.active +
+            "sku" +
+            searchdata.sku +
+            "id_category" +
+            searchdata.id_category +
+            "product_image" +
+            searchdata.product_image +
+            "description" +
+            searchdata.description +
+            "price" +
+            searchdata.price +
+            "stock" +
+            searchdata.stock +
+            "product_id" +
+            searchdata.product_id
+        );
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     }
     FindItem();
-  });
+  }, [search]);
   const handleUpdate = () => {
     alert("Item Created!");
     setrefetch(!refetch);
@@ -120,7 +140,7 @@ export function Product() {
     <div class="min-h-screen flex items-center justify-center m-5">
       {isLoading && <p>Loading...</p>}
       {/* {!isLoading && !data && <Modal />} */}
-      {!isLoading && data && (
+      {!isLoading && (data || searchdata) && (
         <div class="flex flex-col gap-5">
           <div class="rounded-lg w-full flex">
             <button
@@ -141,9 +161,9 @@ export function Product() {
             </button>
           </div>
           {/* 
-          DOES SHOW BUT IT FETCHES THE RIGHT DATA
-          
-          <table class="bg-violet-500 rounded-lg ">
+          DOESNT SHOW BUT IT FETCHES THE RIGHT DATA
+          */}
+          {/* <table class="bg-violet-500 rounded-lg ">
             {searchdata.map((item) => (
               <Row {...item} />
             ))}

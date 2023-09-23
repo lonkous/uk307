@@ -20,7 +20,8 @@ export function Category() {
     async function getCategory() {
       try {
         const response = await fetch(
-          "https://campus.csbe.ch/sollberger-manuel/uek307/Categories",
+          "https://campus.csbe.ch/sollberger-manuel/uek307/Categories" +
+            "?itsy-bitsy-teenie-weenie-yellow-polkadot-bikini",
           {
             method: "GET",
           }
@@ -44,7 +45,8 @@ export function Category() {
   async function CreateItem() {
     try {
       const response = await fetch(
-        "https://campus.csbe.ch/sollberger-manuel/uek307/Category" + idCategory,
+        "https://campus.csbe.ch/sollberger-manuel/uek307/Category/" +
+          idCategory,
         {
           method: "POST",
           body: JSON.stringify({
@@ -74,8 +76,8 @@ export function Category() {
     async function FindItem() {
       try {
         const response = await fetch(
-          "https://campus.csbe.ch/sollberger-manuel/uek307/Product/" +
-            60003111 +
+          "https://campus.csbe.ch/sollberger-manuel/uek307/Category/" +
+            search +
             "?itsy-bitsy-teenie-weenie-yellow-polkadot-bikini",
           {
             method: "GET",
@@ -86,18 +88,19 @@ export function Category() {
         }
         const responseData = await response.json();
         setSearchdata(responseData);
-        console.log(searchdata);
+        // this is a last second just to show it works
+        alert("name:" + searchdata.name + "active:" + searchdata.active);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     }
     FindItem();
-  });
+  }, [search]);
   return (
     <div class="min-h-screen flex items-center justify-center m-5">
       {isLoading && <p>Loading...</p>}
       {/* {!isLoading && !data && <Modal />} */}
-      {!isLoading && data && (
+      {!isLoading && (data || searchdata) && (
         <div class="flex flex-col gap-5">
           <div class="rounded-lg w-full flex">
             <button
