@@ -39,11 +39,10 @@ export function Row(item) {
           "?itsy-bitsy-teenie-weenie-yellow-polkadot-bikini",
         {
           method: "PUT",
-          //FIXME:fix body
           body: JSON.stringify({
             category_id: category_id,
-            active: 1,
-            name: "Nice Category",
+            active: document.getElementById("active"),
+            name: document.getElementById("name"),
           }),
         }
       );
@@ -126,19 +125,21 @@ export function Row(item) {
             <input
               class="p-2 rounded-lg bg-white w-full text-neutral-900"
               placeholder="Active"
+              id="active"
             ></input>
           </td>
           <td class="p-2 w-fit  hover:underline">
             <input
               class="p-2 rounded-lg bg-white w-full text-neutral-900"
               placeholder="Category ID"
+              id="category_id"
             ></input>
           </td>
           <td class="p-2 w-fit  hover:underline">
             <input
               class="p-2 rounded-lg bg-white w-full text-neutral-900"
               placeholder="Name"
-              id="sku"
+              id="name"
             ></input>
           </td>
           <td class="p-2 w-fit  hover:underline"></td>

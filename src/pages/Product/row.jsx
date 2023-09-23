@@ -38,23 +38,21 @@ export function Row(item, setrefetch, refresh) {
           sku +
           "?itsy-bitsy-teenie-weenie-yellow-polkadot-bikini",
         {
-          method: "UPDATE",
+          method: "PUT",
           //fix body
           body: JSON.stringify({
-            active: 1,
-            id_category: 1,
-            name: "Nice Product",
-            product_image: "/path/to/image.png",
-            description:
-              "This is a very fine product with some awesome features.",
-            price: 9.95,
-            stock: 17,
+            active: document.getElementById("active"),
+            id_category: document.getElementById("id_category"),
+            name: document.getElementById("name"),
+            product_image: document.getElementById("photo"),
+            description: document.getElementById("description"),
+            price: document.getElementById("price"),
+            stock: document.getElementById("stock"),
           }),
         }
       );
       console.log(sku);
       console.log(item.sku);
-
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
@@ -147,50 +145,57 @@ export function Row(item, setrefetch, refresh) {
           <td class="p-2 w-fit  hover:underline">
             <input
               class="p-2 rounded-lg bg-white w-full text-neutral-900"
-              placeholder="Name"
-            ></input>
-          </td>
-          <td class="p-2 w-fit  hover:underline">
-            <input
-              class="p-2 rounded-lg bg-white w-full text-neutral-900"
-              placeholder="Active"
-            ></input>
-          </td>
-          <td class="p-2 w-fit  hover:underline">
-            <input
-              class="p-2 rounded-lg bg-white w-full text-neutral-900"
-              placeholder="Category ID"
-            ></input>
-          </td>
-          <td class="p-2 w-fit  hover:underline">
-            <input
-              class="p-2 rounded-lg bg-white w-full text-neutral-900"
-              placeholder="Name"
+              placeholder="Sku"
               id="sku"
             ></input>
           </td>
           <td class="p-2 w-fit  hover:underline">
             <input
               class="p-2 rounded-lg bg-white w-full text-neutral-900"
+              placeholder="Active"
+              id="active"
+            ></input>
+          </td>
+          <td class="p-2 w-fit  hover:underline">
+            <input
+              class="p-2 rounded-lg bg-white w-full text-neutral-900"
+              placeholder="Category ID"
+              id="id_category"
+            ></input>
+          </td>
+          <td class="p-2 w-fit  hover:underline">
+            <input
+              class="p-2 rounded-lg bg-white w-full text-neutral-900"
+              placeholder="Name"
+              id="name"
+            ></input>
+          </td>
+          <td class="p-2 w-fit  hover:underline">
+            <input
+              class="p-2 rounded-lg bg-white w-full text-neutral-900"
               placeholder="Photo"
+              id="photo"
             ></input>
           </td>
           <td class="p-2 w-fit  hover:underline">
             <input
               class="p-2 rounded-lg bg-white w-full text-neutral-900"
               placeholder="Description"
+              id="description"
             ></input>
           </td>
           <td class="p-2 w-fit  hover:underline">
             <input
               class="p-2 rounded-lg bg-white w-full text-neutral-900"
               placeholder="Price"
+              id="price"
             ></input>
           </td>
           <td class="p-2 w-fit  hover:underline">
             <input
               class="p-2 rounded-lg bg-white w-full text-neutral-900"
               placeholder="Stock"
+              id="stock"
             ></input>
           </td>
           <td></td>
