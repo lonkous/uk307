@@ -15,7 +15,8 @@ export function Row(item) {
       try {
         const response = await fetch(
           "https://campus.csbe.ch/sollberger-manuel/uek307/Category/" +
-            category_id,
+            category_id +
+            "?itsy-bitsy-teenie-weenie-yellow-polkadot-bikini",
           {
             method: "DELETE",
           }
@@ -34,7 +35,8 @@ export function Row(item) {
     try {
       const response = await fetch(
         "https://campus.csbe.ch/sollberger-manuel/uek307/Category/" +
-          category_id,
+          category_id +
+          "?itsy-bitsy-teenie-weenie-yellow-polkadot-bikini",
         {
           method: "PUT",
           body: JSON.stringify({

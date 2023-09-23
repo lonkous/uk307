@@ -1,7 +1,7 @@
 import { h } from "preact";
 import { useState } from "react";
 
-export default function Modal() {
+export default function Modal({ isOpen, setIsOpen }) {
   let [username, setUsername] = useState("");
   let [password, setPassword] = useState("");
 
@@ -39,11 +39,10 @@ export default function Modal() {
   }
 
   return (
-    <form class="flex flex-col border-2 p-4 rounded-lg">
-      <p class="p-2">Sign In</p>
+    <form class="flex">
       <input
         type="text"
-        placeholder="root"
+        placeholder="Username"
         value={username}
         onInput={handleUserChange}
         class="rounded-md p-1 m-1"
@@ -52,7 +51,7 @@ export default function Modal() {
       <input
         type="text"
         value={password}
-        placeholder="sUP3R53CR3T#"
+        placeholder="Password"
         onInput={handlePasswordChange}
         class="rounded-md p-1 m-1"
       >

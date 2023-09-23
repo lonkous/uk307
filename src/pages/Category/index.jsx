@@ -46,7 +46,8 @@ export function Category() {
     try {
       const response = await fetch(
         "https://campus.csbe.ch/sollberger-manuel/uek307/Category/" +
-          idCategory,
+          idCategory +
+          "?itsy-bitsy-teenie-weenie-yellow-polkadot-bikini",
         {
           method: "POST",
           body: JSON.stringify({

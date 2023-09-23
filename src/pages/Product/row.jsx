@@ -14,7 +14,9 @@ export function Row(item) {
     {
       try {
         const response = await fetch(
-          "https://campus.csbe.ch/sollberger-manuel/uek307/Product/" + item,
+          "https://campus.csbe.ch/sollberger-manuel/uek307/Product/" +
+            item +
+            "?itsy-bitsy-teenie-weenie-yellow-polkadot-bikini",
           {
             method: "DELETE",
           }
@@ -32,7 +34,9 @@ export function Row(item) {
   async function UpdateItem(sku) {
     try {
       const response = await fetch(
-        "https://campus.csbe.ch/sollberger-manuel/uek307/Product/" + sku,
+        "https://campus.csbe.ch/sollberger-manuel/uek307/Product/" +
+          sku +
+          "?itsy-bitsy-teenie-weenie-yellow-polkadot-bikini",
         {
           method: "PUT",
           //fix body

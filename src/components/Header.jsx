@@ -5,6 +5,7 @@ import { useState } from "preact/hooks";
 export function Header({ setProduct, product }) {
   const { url } = useLocation();
 
+  const [isSignOpen, setIsSignOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleProductClick = () => {
@@ -24,6 +25,12 @@ export function Header({ setProduct, product }) {
         <a class="font-bold" onClick={handleCategoryClick}>
           Categories
         </a>
+
+        {!isLoggedIn && (
+          <a onClick={() => setIsSignOpen(!isSignOpen)}>Sign In</a>
+        )}
+
+        {isSignOpen && <Modal isOpen={isSignOpen} setIsOpen={setIsSignOpen} />}
       </div>
     </header>
   );
