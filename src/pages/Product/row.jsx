@@ -38,16 +38,16 @@ export function Row(item) {
           sku +
           "?itsy-bitsy-teenie-weenie-yellow-polkadot-bikini",
         {
-          method: "POST",
+          method: "UPDATE",
           body: JSON.stringify({
-            sku: item.sku,
-            active: item.active,
-            id_category: item.id_category,
-            name: item.name,
-            product_image: item.product_image,
-            description: item.description,
-            price: item.price,
-            stock: item.stock,
+            active: 1,
+            id_category: 1,
+            name: "Nice Product",
+            product_image: "/path/to/image.png",
+            description:
+              "This is a very fine product with some awesome features.",
+            price: 9.95,
+            stock: 17,
           }),
         }
       );
