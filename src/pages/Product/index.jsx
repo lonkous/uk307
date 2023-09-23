@@ -62,9 +62,6 @@ export function Product() {
           price: price,
           stock: stock,
         }),
-        headers: {
-          "Content-Type": "application/json",
-        },
       });
 
       if (!response.ok) {
@@ -82,6 +79,15 @@ export function Product() {
     alert("Item Created!");
     setrefetch(!refetch);
     CreateItem(sku);
+    setSku("");
+    setActive("");
+    setIdCategory("");
+    setName("");
+    setPhoto("");
+    setDescription("");
+    setPrice("");
+    setStock("");
+    setIsCreate(!isCreate);
   };
 
   return (
@@ -210,7 +216,7 @@ export function Product() {
             )}
 
             {data.map((item) => (
-              <Row {...item} />
+              <Row {...item} refresh={setrefetch} refetch={refetch} />
             ))}
           </table>
         </div>

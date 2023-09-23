@@ -10,12 +10,12 @@ export function Row(item) {
       DeleteItem(item);
     }
   };
-  async function DeleteItem(item) {
+  async function DeleteItem(category_id) {
     {
       try {
         const response = await fetch(
-          "https://campus.csbe.ch/sollberger-manuel/uek307/Product/" +
-            item +
+          "https://campus.csbe.ch/sollberger-manuel/uek307/Category/" +
+            category_id +
             "?itsy-bitsy-teenie-weenie-yellow-polkadot-bikini",
           {
             method: "DELETE",
@@ -34,19 +34,19 @@ export function Row(item) {
   async function UpdateItem(category_id) {
     try {
       const response = await fetch(
-        "https://campus.csbe.ch/sollberger-manuel/uek307/Product/" +
+        "https://campus.csbe.ch/sollberger-manuel/uek307/Category/" +
           category_id +
           "?itsy-bitsy-teenie-weenie-yellow-polkadot-bikini",
         {
-          method: "UPDATE",
-          //fix body
+          method: "PUT",
+          //FIXME:fix body
           body: JSON.stringify({
+            category_id: category_id,
             active: 1,
             name: "Nice Category",
           }),
         }
       );
-
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }

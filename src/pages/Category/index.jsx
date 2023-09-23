@@ -38,22 +38,20 @@ export function Category() {
   }, [refetch]);
 
   async function CreateItem() {
+    console.log(idCategory);
     try {
       const url =
-        "https://campus.csbe.ch/sollberger-manuel/uek307/category/" +
+        "https://campus.csbe.ch/sollberger-manuel/uek307/Category" +
         idCategory +
         "?itsy-bitsy-teenie-weenie-yellow-polkadot-bikini";
       console.log(url);
 
       const response = await fetch(url, {
-        method: "PUT",
+        method: "POST",
         body: JSON.stringify({
           active: active,
           name: name,
         }),
-        headers: {
-          "Content-Type": "application/json",
-        },
       });
 
       if (!response.ok) {
@@ -68,6 +66,10 @@ export function Category() {
   }
 
   const handleUpdate = () => {
+    console.log(active);
+    console.log(idCategory);
+    console.log(name);
+
     alert("Item Created!");
     setrefetch(!refetch);
     CreateItem();
@@ -121,14 +123,7 @@ export function Category() {
                     onChange={(e) => setActive(e.target.value)}
                   ></input>
                 </td>
-                <td class="p-2 w-fit  hover:underline">
-                  <input
-                    class="p-2 rounded-lg bg-white w-full text-neutral-900"
-                    placeholder="Category ID"
-                    value={idCategory}
-                    onChange={(e) => setIdCategory(e.target.value)}
-                  ></input>
-                </td>
+                <td class="p-2 w-fit  hover:underline"></td>
                 <td class="p-2 w-fit  hover:underline">
                   <input
                     class="p-2 rounded-lg bg-white w-full text-neutral-900"

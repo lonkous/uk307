@@ -1,7 +1,7 @@
 import "tailwindcss/tailwind.css";
 import { useState } from "preact/hooks";
 
-export function Row(item) {
+export function Row(item, setrefetch, refresh) {
   let [isEditable, setEditable] = useState(false);
   const handleDelete = (item) => {
     const confirmation = window.confirm("Are you sure you want to delete?");
@@ -72,6 +72,7 @@ export function Row(item) {
   const handleUpdate = (item) => {
     setEditable(!isEditable);
     UpdateItem(item);
+    setrefetch(!refresh);
   };
   return (
     <>
