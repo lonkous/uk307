@@ -41,27 +41,28 @@ export function Product() {
     }
 
     getProducts();
-  }, [refetch]);
+  });
 
   async function CreateItem(item) {
     try {
-      const response = await fetch(
+      const url =
         "https://campus.csbe.ch/sollberger-manuel/uek307/Product/" +
-          sku +
-          "?itsy-bitsy-teenie-weenie-yellow-polkadot-bikini",
-        {
-          method: "PUT",
-          body: JSON.stringify({
-            active: active,
-            id_category: idCategory,
-            name: name,
-            product_image: photo,
-            description: description,
-            price: price,
-            stock: stock,
-          }),
-        }
-      );
+        sku +
+        "?itsy-bitsy-teenie-weenie-yellow-polkadot-bikini";
+      console.log(url);
+
+      const response = await fetch(url, {
+        method: "PUT",
+        body: JSON.stringify({
+          active: active,
+          id_category: idCategory,
+          name: name,
+          product_image: photo,
+          description: description,
+          price: price,
+          stock: stock,
+        }),
+      });
 
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -215,7 +216,7 @@ export function Product() {
             )}
 
             {data.map((item) => (
-              <Row {...item} refresh={setrefetch} refetch={refetch} />
+              <Row {...item} />
             ))}
           </table>
         </div>

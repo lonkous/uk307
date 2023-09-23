@@ -1,7 +1,7 @@
 import "tailwindcss/tailwind.css";
 import { useState } from "preact/hooks";
 
-export function Row(item, setrefetch, refresh) {
+export function Row(item) {
   let [isEditable, setEditable] = useState(false);
   const handleDelete = (item) => {
     const confirmation = window.confirm("Are you sure you want to delete?");
@@ -14,9 +14,7 @@ export function Row(item, setrefetch, refresh) {
     {
       try {
         const response = await fetch(
-          "https://campus.csbe.ch/sollberger-manuel/uek307/Product/" +
-            item +
-            "?itsy-bitsy-teenie-weenie-yellow-polkadot-bikini",
+          "https://campus.csbe.ch/sollberger-manuel/uek307/Product/" + item,
           {
             method: "DELETE",
           }
@@ -41,13 +39,13 @@ export function Row(item, setrefetch, refresh) {
           method: "PUT",
           //fix body
           body: JSON.stringify({
-            active: document.getElementById("active"),
-            id_category: document.getElementById("id_category"),
-            name: document.getElementById("name"),
-            product_image: document.getElementById("photo"),
-            description: document.getElementById("description"),
-            price: document.getElementById("price"),
-            stock: document.getElementById("stock"),
+            active: document.getElementById("active").value,
+            id_category: document.getElementById("id_category").value,
+            name: document.getElementById("name").value,
+            product_image: document.getElementById("photo").value,
+            description: document.getElementById("description").value,
+            price: document.getElementById("price").value,
+            stock: document.getElementById("stock").value,
           }),
         }
       );
@@ -70,7 +68,6 @@ export function Row(item, setrefetch, refresh) {
   const handleUpdate = (item) => {
     setEditable(!isEditable);
     UpdateItem(item);
-    setrefetch(!refresh);
   };
   return (
     <>

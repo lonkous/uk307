@@ -16,7 +16,7 @@ export function Category() {
     async function getCategory() {
       try {
         const response = await fetch(
-          "https://campus.csbe.ch/sollberger-manuel/uek307/Categories?itsy-bitsy-teenie-weenie-yellow-polkadot-bikini",
+          "https://campus.csbe.ch/sollberger-manuel/uek307/Categories",
           {
             method: "GET",
           }
@@ -35,24 +35,20 @@ export function Category() {
     }
 
     getCategory();
-  }, [refetch]);
+  });
 
   async function CreateItem() {
-    console.log(idCategory);
     try {
-      const url =
-        "https://campus.csbe.ch/sollberger-manuel/uek307/Category" +
-        idCategory +
-        "?itsy-bitsy-teenie-weenie-yellow-polkadot-bikini";
-      console.log(url);
-
-      const response = await fetch(url, {
-        method: "POST",
-        body: JSON.stringify({
-          active: active,
-          name: name,
-        }),
-      });
+      const response = await fetch(
+        "https://campus.csbe.ch/sollberger-manuel/uek307/Category" + idCategory,
+        {
+          method: "POST",
+          body: JSON.stringify({
+            active: active,
+            name: name,
+          }),
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -66,10 +62,6 @@ export function Category() {
   }
 
   const handleUpdate = () => {
-    console.log(active);
-    console.log(idCategory);
-    console.log(name);
-
     alert("Item Created!");
     setrefetch(!refetch);
     CreateItem();
