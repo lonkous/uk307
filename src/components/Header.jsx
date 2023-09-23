@@ -2,7 +2,7 @@ import { useLocation } from "preact-iso";
 import Modal from "../pages/SignIn";
 import { useState } from "preact/hooks";
 
-export function Header({ setProduct, product, setCategory, category }) {
+export function Header({ setProduct, product }) {
   const { url } = useLocation();
 
   const [isSignOpen, setIsSignOpen] = useState(false);
@@ -10,11 +10,9 @@ export function Header({ setProduct, product, setCategory, category }) {
 
   const handleProductClick = () => {
     setProduct(true);
-    setCategory(false);
   };
 
   const handleCategoryClick = () => {
-    setCategory(true);
     setProduct(false);
   };
 
