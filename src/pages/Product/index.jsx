@@ -45,7 +45,7 @@ export function Product() {
     }
 
     getProducts();
-  }, []);
+  });
 
   async function CreateItem(item) {
     try {
