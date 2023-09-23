@@ -13,6 +13,9 @@ export function Category() {
   const [name, setName] = useState("");
   const [refetch, setrefetch] = useState(false);
 
+  const [searchdata, setSearchdata] = useState(null);
+  const [search, setSearch] = useState("");
+
   useEffect(() => {
     async function getCategory() {
       try {
@@ -67,7 +70,29 @@ export function Category() {
     setrefetch(!refetch);
     CreateItem();
   };
-
+  useEffect(() => {
+    async function FindItem() {
+      try {
+        const response = await fetch(
+          "https://campus.csbe.ch/sollberger-manuel/uek307/Product/" +
+            60003111 +
+            "?itsy-bitsy-teenie-weenie-yellow-polkadot-bikini",
+          {
+            method: "GET",
+          }
+        );
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const responseData = await response.json();
+        setSearchdata(responseData);
+        console.log(searchdata);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+    FindItem();
+  });
   return (
     <div class="min-h-screen flex items-center justify-center m-5">
       {isLoading && <p>Loading...</p>}
@@ -85,11 +110,21 @@ export function Category() {
               type="text"
               class="p-2 pl-8 rounded-l-lg w-fill flex-grow ring-0 ring-white"
               placeholder="Searching..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
             />
             <button class="bg-violet-500 text-neutral-100 underline underline-offset-2 capitalize decoration-2  p-2 rounded-r-lg w-1/5 font-bold">
               search
             </button>
           </div>
+          {/* 
+          DOES SHOW BUT IT FETCHES THE RIGHT DATA
+          
+          <table class="bg-violet-500 rounded-lg ">
+            {searchdata.map((item) => (
+              <Row {...item} />
+            ))}
+          </table> */}
           <table class="bg-violet-500 rounded-lg ">
             <tr class="bg-gray-300 shadow-2xl ">
               <th class="p-2 w-fit text-neutral-900 hover:underline">Edit</th>
