@@ -32,9 +32,7 @@ export function Row(item) {
   async function UpdateItem(sku) {
     try {
       const response = await fetch(
-        "https://campus.csbe.ch/sollberger-manuel/uek307/Product/" +
-          sku +
-          "?itsy-bitsy-teenie-weenie-yellow-polkadot-bikini",
+        "https://campus.csbe.ch/sollberger-manuel/uek307/Product/" + sku,
         {
           method: "PUT",
           //fix body

@@ -2,9 +2,11 @@ import { h } from "preact";
 import { useState, useEffect } from "react";
 import { Row } from "./row";
 import { Category } from "../Category";
+import Modal from "../SignIn";
 
 export function Product() {
   const [data, setData] = useState(null);
+  const [searchdata, setSearchdata] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isCreate, setIsCreate] = useState(false);
 
@@ -16,13 +18,15 @@ export function Product() {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [stock, setStock] = useState("");
+  const [search, setSearch] = useState("");
   const [refetch, setrefetch] = useState(false);
 
   useEffect(() => {
     async function getProducts() {
       try {
         const response = await fetch(
-          "https://campus.csbe.ch/sollberger-manuel/uek307/Products?itsy-bitsy-teenie-weenie-yellow-polkadot-bikini",
+          "https://campus.csbe.ch/sollberger-manuel/uek307/Products" +
+            "?itsy-bitsy-teenie-weenie-yellow-polkadot-bikini",
           {
             method: "GET",
           }
@@ -41,7 +45,7 @@ export function Product() {
     }
 
     getProducts();
-  });
+  }, []);
 
   async function CreateItem(item) {
     try {
@@ -74,7 +78,27 @@ export function Product() {
       console.error("Error updating data:", error);
     }
   }
-
+  async function FindItem() {
+    try {
+      const response = await fetch(
+        "https://campus.csbe.ch/sollberger-manuel/uek307/Product/" +
+          searchdata +
+          "?itsy-bitsy-teenie-weenie-yellow-polkadot-bikini",
+        {
+          method: "GET",
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const responseData = await response.json();
+      setSearchdata(responseData);
+      console.log(searchdata);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  }
+  FindItem();
   const handleUpdate = () => {
     alert("Item Created!");
     setrefetch(!refetch);
@@ -89,11 +113,14 @@ export function Product() {
     setStock("");
     setIsCreate(!isCreate);
   };
+  const handleFindItems = () => {
+    FindItem();
+  };
 
   return (
     <div class="min-h-screen flex items-center justify-center m-5">
       {isLoading && <p>Loading...</p>}
-      {!isLoading && !data && <p>Error: Unable to fetch data</p>}
+      {/* {!isLoading && !data && <Modal />} */}
       {!isLoading && data && (
         <div class="flex flex-col gap-5">
           <div class="rounded-lg w-full flex">
@@ -107,16 +134,19 @@ export function Product() {
               type="text"
               class="p-2 pl-8 rounded-l-lg w-fill flex-grow ring-0 ring-white"
               placeholder="Searching..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
             />
-            <button class="bg-violet-500 text-neutral-100 underline underline-offset-2 capitalize decoration-2  p-2 rounded-r-lg w-1/5 font-bold">
+            <button
+              class="bg-violet-500 text-neutral-100 underline underline-offset-2 capitalize decoration-2  p-2 rounded-r-lg w-1/5 font-bold"
+              onClick={() => handleFindItems()}
+            >
               search
             </button>
           </div>
           <table class="bg-violet-500 rounded-lg ">
             <tr class="bg-gray-300 shadow-2xl ">
-              <th class="p-2 w-fit text-neutral-900 hover:underline">
-                Edit Product
-              </th>
+              <th class="p-2 w-fit text-neutral-900 hover:underline">Edit</th>
               <th class="p-2 w-fit text-neutral-900 hover:underline  rounded-lg ">
                 Product Id
               </th>
@@ -214,7 +244,6 @@ export function Product() {
                 </td>
               </tr>
             )}
-
             {data.map((item) => (
               <Row {...item} />
             ))}

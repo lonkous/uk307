@@ -34,8 +34,7 @@ export function Row(item) {
     try {
       const response = await fetch(
         "https://campus.csbe.ch/sollberger-manuel/uek307/Category/" +
-          category_id +
-          "?itsy-bitsy-teenie-weenie-yellow-polkadot-bikini",
+          category_id,
         {
           method: "PUT",
           body: JSON.stringify({

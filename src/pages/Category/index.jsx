@@ -1,6 +1,7 @@
 import { h } from "preact";
 import { useState, useEffect } from "react";
 import { Row } from "./row";
+import Modal from "../SignIn";
 
 export function Category() {
   const [data, setData] = useState(null);
@@ -70,7 +71,7 @@ export function Category() {
   return (
     <div class="min-h-screen flex items-center justify-center m-5">
       {isLoading && <p>Loading...</p>}
-      {!isLoading && !data && <p>Error: Unable to fetch data</p>}
+      {/* {!isLoading && !data && <Modal />} */}
       {!isLoading && data && (
         <div class="flex flex-col gap-5">
           <div class="rounded-lg w-full flex">
@@ -91,9 +92,7 @@ export function Category() {
           </div>
           <table class="bg-violet-500 rounded-lg ">
             <tr class="bg-gray-300 shadow-2xl ">
-              <th class="p-2 w-fit text-neutral-900 hover:underline">
-                Edit Category
-              </th>
+              <th class="p-2 w-fit text-neutral-900 hover:underline">Edit</th>
               <th class="p-2 w-fit text-neutral-900 hover:underline">Active</th>
               <th class="p-2 w-fit text-neutral-900 hover:underline">
                 Category ID

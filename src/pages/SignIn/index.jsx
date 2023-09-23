@@ -1,7 +1,7 @@
 import { h } from "preact";
 import { useState } from "react";
 
-export default function Modal({ isOpen, setIsOpen }) {
+export default function Modal() {
   let [username, setUsername] = useState("");
   let [password, setPassword] = useState("");
 
@@ -29,7 +29,6 @@ export default function Modal({ isOpen, setIsOpen }) {
   function clicked() {
     console.log("testing");
     SignIn(username, password);
-    setIsOpen(false);
   }
 
   function handleUserChange(event) {
@@ -40,7 +39,8 @@ export default function Modal({ isOpen, setIsOpen }) {
   }
 
   return (
-    <form class="flex" open={isOpen} onClose={() => setIsOpen(false)}>
+    <form class="flex flex-col border-2 p-4 rounded-lg">
+      <p class="p-2">Sign In</p>
       <input
         type="text"
         placeholder="root"
