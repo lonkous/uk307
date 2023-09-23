@@ -1,11 +1,22 @@
 import { h } from "preact";
 import { useState, useEffect } from "react";
 import { Row } from "./row";
+import { Category } from "../Category";
 
 export function Product() {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isCreate, setIsCreate] = useState(false);
+
+  const [sku, setSku] = useState("");
+  const [active, setActive] = useState("");
+  const [idCategory, setIdCategory] = useState("");
+  const [name, setName] = useState("");
+  const [photo, setPhoto] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState("");
+  const [stock, setStock] = useState("");
+  const [refetch, setrefetch] = useState(false);
 
   useEffect(() => {
     async function getProducts() {
@@ -30,40 +41,47 @@ export function Product() {
     }
 
     getProducts();
-  }, []);
+  }, [refetch]);
 
   async function CreateItem(item) {
-    {
-      try {
-        const response = await fetch(
-          "https://campus.csbe.ch/sollberger-manuel/uek307/Product/",
-          {
-            method: "POST",
-            body: JSON.stringify({
-              active: 1,
-              id_category: 1,
-              name: "Nice Product",
-              product_image: "/path/to/image.png",
-              description:
-                "This is a very fine product with some awesome features.",
-              price: 9.95,
-              stock: 17,
-            }),
-          }
-        );
-        console.log(response);
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-      } catch (error) {
-        console.error("Error fetching data:", error);
+    try {
+      const url =
+        "https://campus.csbe.ch/sollberger-manuel/uek307/Product/" +
+        sku +
+        "?itsy-bitsy-teenie-weenie-yellow-polkadot-bikini";
+      console.log(url);
+
+      const response = await fetch(url, {
+        method: "PUT",
+        body: JSON.stringify({
+          active: active,
+          id_category: idCategory,
+          name: name,
+          product_image: photo,
+          description: description,
+          price: price,
+          stock: stock,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
       }
+
+      const responseData = await response.json();
+      console.log("Data updated successfully:", responseData);
+    } catch (error) {
+      console.error("Error updating data:", error);
     }
   }
 
-  const handleUpdate = (item) => {
+  const handleUpdate = () => {
     alert("Item Created!");
-    CreateItem(item);
+    setrefetch(!refetch);
+    CreateItem(sku);
   };
 
   return (
@@ -96,9 +114,7 @@ export function Product() {
               <th class="p-2 w-fit text-neutral-900 hover:underline  rounded-lg ">
                 Product Id
               </th>
-              <th class="p-2 w-fit text-neutral-900 hover:underline">
-                Product Name
-              </th>
+              <th class="p-2 w-fit text-neutral-900 hover:underline">SKU</th>
               <th class="p-2 w-fit text-neutral-900 hover:underline">Active</th>
               <th class="p-2 w-fit text-neutral-900 hover:underline">
                 Category
@@ -122,55 +138,70 @@ export function Product() {
                   <input
                     class="p-2 rounded-lg bg-white w-full text-neutral-900"
                     placeholder="Name"
+                    value={sku}
+                    onChange={(e) => setSku(e.target.value)}
                   ></input>
                 </td>
                 <td class="p-2 w-fit  hover:underline">
                   <input
                     class="p-2 rounded-lg bg-white w-full text-neutral-900"
                     placeholder="Active"
+                    value={active}
+                    onChange={(e) => setActive(e.target.value)}
                   ></input>
                 </td>
                 <td class="p-2 w-fit  hover:underline">
                   <input
                     class="p-2 rounded-lg bg-white w-full text-neutral-900"
                     placeholder="Category ID"
+                    value={idCategory}
+                    onChange={(e) => setIdCategory(e.target.value)}
                   ></input>
                 </td>
                 <td class="p-2 w-fit  hover:underline">
                   <input
                     class="p-2 rounded-lg bg-white w-full text-neutral-900"
                     placeholder="Name"
-                    id="sku"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
                   ></input>
                 </td>
                 <td class="p-2 w-fit  hover:underline">
                   <input
                     class="p-2 rounded-lg bg-white w-full text-neutral-900"
                     placeholder="Photo"
+                    value={photo}
+                    onChange={(e) => setPhoto(e.target.value)}
                   ></input>
                 </td>
                 <td class="p-2 w-fit  hover:underline">
                   <input
                     class="p-2 rounded-lg bg-white w-full text-neutral-900"
                     placeholder="Description"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
                   ></input>
                 </td>
                 <td class="p-2 w-fit  hover:underline">
                   <input
                     class="p-2 rounded-lg bg-white w-full text-neutral-900"
                     placeholder="Price"
+                    value={price}
+                    onChange={(e) => setPrice(e.target.value)}
                   ></input>
                 </td>
                 <td class="p-2 w-fit  hover:underline">
                   <input
                     class="p-2 rounded-lg bg-white w-full text-neutral-900"
                     placeholder="Stock"
+                    value={stock}
+                    onChange={(e) => setStock(e.target.value)}
                   ></input>
                 </td>
                 <td class="p-2 w-fit text-neutral-900 hover:underline text-center">
                   <button
                     class="px-4 py-2 bg-green-500 text-white rounded-2xl hover:bg-green-800"
-                    onClick={() => handleUpdate(document.getElementById("sku"))}
+                    onClick={() => handleUpdate(sku)}
                   >
                     Create
                   </button>
