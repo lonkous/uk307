@@ -39,6 +39,16 @@ export function Product() {
           "https://campus.csbe.ch/sollberger-manuel/uek307/Product/",
           {
             method: "POST",
+            body: JSON.stringify({
+              active: 1,
+              id_category: 1,
+              name: "Nice Product",
+              product_image: "/path/to/image.png",
+              description:
+                "This is a very fine product with some awesome features.",
+              price: 9.95,
+              stock: 17,
+            }),
           }
         );
         console.log(response);

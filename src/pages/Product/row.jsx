@@ -39,6 +39,7 @@ export function Row(item) {
           "?itsy-bitsy-teenie-weenie-yellow-polkadot-bikini",
         {
           method: "UPDATE",
+          //fix body
           body: JSON.stringify({
             active: 1,
             id_category: 1,
